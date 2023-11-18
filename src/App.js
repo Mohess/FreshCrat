@@ -1,25 +1,39 @@
-import logo from './logo.svg';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import './App.css';
+import Layout from './Components/Layout/Layout';
+import Home from './Components/Home/Home';
+import Login from './Components/Login/Login';
+import Products from './Components/Products/Products';
+import Register from './Components/Register/Register';
+import NotFound from './Components/NotFound/NotFound';
+import Categories from './Components/Categories/Categories';
+import Brands from './Components/Brands/Brands';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+export default function App() {
+
+
+  const myRouter= createBrowserRouter([
+    { path:'/' , element:  <Layout /> , children:[
+
+      { path:'home' , element:  <Home />},
+      { path:'login' , element:  <Login />},
+      { path:'register' , element:  <Register />},
+      { path:'products' , element:  <Products />},
+      { path:'categories' , element:  <Categories />},
+      { path:'brands' , element:  <Brands />},
+      { index:true , element:  <Products />},
+      { path:'*' , element:  <NotFound />},
+    ] }
+    
+  ])
+
+  return <>
+  
+  <RouterProvider  router={ myRouter } />
+
+  </>
+
 }
 
-export default App;
+
